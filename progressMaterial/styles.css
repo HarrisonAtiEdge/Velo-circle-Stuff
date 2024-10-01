@@ -1,0 +1,197 @@
+* {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  :root {
+    --hue: 223;
+    --bg: hsl(var(--hue), 90%, 10%);
+    --fg: hsl(var(--hue), 90%, 90%);
+    --primary: hsl(var(--hue), 90%, 50%);
+    --trans-dur: 0.3s;
+    --trans-timing: cubic-bezier(0.65, 0, 0.35, 1);
+    font-size: calc(14px + (30 - 14) * (100vw - 280px) / (3840 - 280));
+  }
+  
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    display: flex;
+    font: 1em/1.5 "DM Sans", sans-serif;
+    height: 100vh;
+  }
+  
+  .l {
+    --dur: 2s;
+    --dur-frac: calc(var(--dur) * 0.7);
+    --start-delay-a: calc(var(--dur) * 0.125);
+    --mid-delay-a: calc(var(--dur) * 0.825);
+    --end-delay-a: calc(var(--dur) * 1.825);
+    --start-delay-b: calc(var(--dur) * 0.25);
+    --mid-delay-b: calc(var(--dur) * 0.95);
+    --end-delay-b: calc(var(--dur) * 1.95);
+    --end-delay-c: calc(var(--dur) * 1.7);
+    animation: fade-slide-in 0.5s var(--trans-timing);
+    display: block;
+    margin: auto;
+    width: 12em;
+    height: auto;
+  }
+  
+  .l__a,
+  .l__b,
+  .l__c,
+  .l__rotate {
+    transform-origin: 64px 64px;
+  }
+  
+  /* delay 1st */
+  .l--running .l__a {
+    animation: ring-a-start calc(var(--dur) * 0.7) calc(var(--dur) * 0.125) linear,
+      ring-a var(--dur) calc(var(--dur) * 0.825) linear,
+      ring-a-end calc(var(--dur) * 0.7) calc(var(--dur) * 1.825) linear;
+  }
+  
+  /* delay 2nd */
+  .l--running .l__b {
+    animation: ring-b-start calc(var(--dur) * 0.7) calc(var(--dur) * 0.25) linear,
+      ring-b var(--dur) calc(var(--dur) * 0.95) linear,
+      ring-b-end calc(var(--dur) * 0.7) calc(var(--dur) * 1.95) linear;
+  }
+  
+  .l--running .l__c {
+    animation: ring-c-start calc(var(--dur) * 0.7) linear,
+      ring-c var(--dur) calc(var(--dur) * 0.7) linear,
+      ring-c-end calc(var(--dur) * 0.7) calc(var(--dur) * 1.7) linear;
+  }
+  
+  .l--running .l__rotate {
+    animation: ring-rotate var(--dur) linear infinite;
+  }
+  
+  /* Animations */
+  @keyframes fade-slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(33%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Ring Keyframes */
+  @keyframes ring-a {
+    from,
+    to {
+      stroke-dashoffset: calc(-377 * 0.875);
+      transform: rotate(0);
+    }
+    50% {
+      stroke-dashoffset: calc(-377 * 0.25);
+      transform: rotate(135deg);
+    }
+  }
+  
+  @keyframes ring-a-start {
+    from {
+      stroke-dashoffset: 0;
+      transform: rotate(0);
+    }
+    to {
+      stroke-dashoffset: calc(-377 * 0.875);
+      transform: rotate(-360deg);
+    }
+  }
+  
+  @keyframes ring-a-end {
+    from {
+      stroke-dashoffset: calc(-377 * 0.875);
+      transform: rotate(0);
+    }
+    to {
+      stroke-dashoffset: 0;
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes ring-b {
+    from,
+    to {
+      stroke-dashoffset: calc(-339.3 * 0.875);
+      transform: rotate(0);
+    }
+    50% {
+      stroke-dashoffset: calc(-339.3 * 0.25);
+      transform: rotate(135deg);
+    }
+  }
+  
+  @keyframes ring-b-start {
+    from {
+      stroke-dashoffset: 0;
+      transform: rotate(0);
+    }
+    to {
+      stroke-dashoffset: calc(-339.3 * 0.875);
+      transform: rotate(-360deg);
+    }
+  }
+  
+  @keyframes ring-b-end {
+    from {
+      stroke-dashoffset: calc(-339.3 * 0.875);
+      transform: rotate(0);
+    }
+    to {
+      stroke-dashoffset: 0;
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes ring-c {
+    from,
+    to {
+      stroke-dashoffset: calc(-301.6 * 0.875);
+      transform: rotate(0);
+    }
+    50% {
+      stroke-dashoffset: calc(-301.6 * 0.25);
+      transform: rotate(135deg);
+    }
+  }
+  
+  @keyframes ring-c-start {
+    from {
+      stroke-dashoffset: 0;
+      transform: rotate(0);
+    }
+    to {
+      stroke-dashoffset: calc(-301.6 * 0.875);
+      transform: rotate(-360deg);
+    }
+  }
+  
+  @keyframes ring-c-end {
+    from {
+      stroke-dashoffset: calc(-301.6 * 0.875);
+      transform: rotate(0);
+    }
+    to {
+      stroke-dashoffset: 0;
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes ring-rotate {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(-720deg);
+    }
+  }
+  
